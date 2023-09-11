@@ -3,4 +3,8 @@ numpy
 seaborn
 plotly
 matplotlib
+scikit-learn
+dill
+xgboost
+lightgbm
 -e. 
