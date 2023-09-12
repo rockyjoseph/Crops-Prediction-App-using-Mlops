@@ -22,7 +22,6 @@ class DataTransformation:
     def get_data_transformer_object(self):
         try:
             numerical_columns = ['N','P','K','temperature','humidity','ph','rainfall']
-            target_column = ['label']
 
             num_pipeline = Pipeline(
                 steps = [
@@ -30,18 +29,11 @@ class DataTransformation:
                 ]
             )
 
-            target_pipeline = Pipeline(
-                steps = [
-                    ('encoder', LabelEncoder())
-                ]
-            )
-
             logging.info(f"Numerical columns: {numerical_columns}")
 
             preprocessor = ColumnTransformer(
                 [
-                    ('num_pipeline', num_pipeline, numerical_columns),
-                    ('target_pipeline', target_pipeline, target_column)
+                    ('num_pipeline', num_pipeline, numerical_columns)
                 ]
             )
 
@@ -59,6 +51,7 @@ class DataTransformation:
             logging.info("Read the Train-Test data")
             logging.info('Obtaining preprocessing object')
 
+            encoder = LabelEncoder()
             preprocessing_obj = self.get_data_transformer_object()
 
             target_column_name = 'label'
@@ -74,18 +67,20 @@ class DataTransformation:
 
             input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
+            target_feature_train_arr = encoder.fit_transform(target_feature_train_df)
+            target_feature_test_arr = encoder.fit_transform(target_feature_test_df)
 
             train_arr = np.c_[
-                input_feature_train_arr, target_feature_train_df
+                input_feature_train_arr, target_feature_train_arr
             ]
 
             test_arr = np.c_[
-                input_feature_test_df, target_feature_test_df
+                input_feature_test_df, target_feature_test_arr
             ]
 
             logging.info(f"Saved preprocessing object")
 
-            save_object(
+            save_obj(
                 file_path = self.data_transformation_config.preprocessor_obj_file_path,
                 obj = preprocessing_obj
             )
