@@ -38,17 +38,41 @@ class ModelTrainer:
             )
 
             models = {
-                'KNN': KNeighborsClassifier(),
-                'Logistic Regression': LogisticRegression(),
+                'KNN': KNeighborsClassifier(n_neighbors=1),
+                'Logistic Regression': LogisticRegression(solver='lbfgs'),
                 'Random Forest': RandomForestClassifier(),
-                'SVC': SVC(),
-                'Gradient Noosting': GradientBoostingClassifier(),
+                'Gradient Boosting': GradientBoostingClassifier(),
                 'Decision Tree': DecisionTreeClassifier(),
-                'Decision Tree': XGBClassifier(),
-                'Decision Tree': LGBMClassifier(),
+                'XgBoost': XGBClassifier(),
+                'Lightgbm': LGBMClassifier(),
+                'SVC': SVC()
             }
 
-            model_report: dict = evaluate_model(X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, models=models)
+            params = {
+                'KNN':{},
+                'Logistic Regression':{
+                    'C':[0.001,0.01,0.1,1,10,100],
+                    'max_iter':[50,75,100,200,300,400,500,700]
+                },
+
+                'Random Forest':{
+                    'n_estimators': [50, 75,100, 150, 200,300]
+                },
+
+
+                'Gradient Boosting':{},
+                'Decision Tree':{},
+                'XgBoost':{},
+                'Lightgbm':{},
+
+                'SVC':{
+                    'C':[0.001,0.01,0.1,1,10,100], 
+                    'gamma':[0.001,0.01,0.1,1,10,100]
+                }
+            }
+
+            model_report: dict = evaluate_model(X_train=X_train, y_train=y_train,
+                                                X_test=X_test, y_test=y_test, models=models, params=params)
 
             best_model_score = max(sorted(model_report.values()))
 
@@ -58,9 +82,6 @@ class ModelTrainer:
 
             best_model = models[best_model_name]
 
-            # if best_model_score < 0.6:
-            #     raise CustomException('No best models found!')
-
             logging.info(f"Model for training and testing dataset")
 
             save_obj(
@@ -68,9 +89,12 @@ class ModelTrainer:
                 obj = best_model
             )
 
-            prediction = best_model.predict(X_test)
+            predicted = best_model.predict(X_test)
 
-            score = accuracy_score(y_test, prediction)
+            score = classification_report(y_test, predicted)
+
+            logging.info(f"Best Model for prediction")
+
             return score
 
         except Exception as e:

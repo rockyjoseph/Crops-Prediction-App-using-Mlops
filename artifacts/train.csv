@@ -1,4 +1,4 @@
-N,P,K,temperature,humidity,ph,rainfall,label
+nitrogen,phosphorus,potassium,temperature,humidity,ph,rainfall,label
 17,16,14,16.39624284,92.18151927,6.625538653,102.944161,orange
 37,79,19,27.54384835,69.3478631,7.143942758,69.40878198,blackgram
 7,73,25,27.52185591,63.13215259,7.28805662,45.20841071,lentil

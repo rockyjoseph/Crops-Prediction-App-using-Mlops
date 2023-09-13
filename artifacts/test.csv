@@ -1,4 +1,4 @@
-N,P,K,temperature,humidity,ph,rainfall,label
+nitrogen,phosphorus,potassium,temperature,humidity,ph,rainfall,label
 101,17,47,29.49401389,94.72981338,6.185053234,26.30820876,muskmelon
 98,8,51,26.1793464,86.52258079,6.25933595,49.43050977,watermelon
 59,62,49,43.36051537,93.35191636,6.941496806,114.778071,papaya

@@ -21,7 +21,7 @@ class DataTransformation:
 
     def get_data_transformer_object(self):
         try:
-            numerical_columns = ['N','P','K','temperature','humidity','ph','rainfall']
+            numerical_columns = ['nitrogen','phosphorus','potassium','temperature','humidity','ph','rainfall']
 
             num_pipeline = Pipeline(
                 steps = [
@@ -55,7 +55,7 @@ class DataTransformation:
             preprocessing_obj = self.get_data_transformer_object()
 
             target_column_name = 'label'
-            numerical_columns = ['N','P','K','temperature','humidity','ph','rainfall']
+            numerical_columns = ['nitogen','phosphorus','potassium','temperature','humidity','ph','rainfall']
 
             input_feature_train_df = train_df.drop(columns = [target_column_name], axis=1)
             target_feature_train_df = train_df[target_column_name]
@@ -75,7 +75,7 @@ class DataTransformation:
             ]
 
             test_arr = np.c_[
-                input_feature_test_df, target_feature_test_arr
+                input_feature_test_arr, target_feature_test_arr
             ]
 
             logging.info(f"Saved preprocessing object")
