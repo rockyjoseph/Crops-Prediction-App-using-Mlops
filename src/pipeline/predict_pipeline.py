@@ -44,13 +44,13 @@ class CustomData:
     def get_data_as_data_frame(self):
         try:
             custom_data_input_dict = {
-                'Nitrogen': [self.nitogen],
-                'Phosplhorus': [self.phosphorus],
-                'Potassium': [self.potassium],
-                'Temperature': [self.temperature],
-                'Humidity': [self.humidity],
-                'Ph': [self.ph],
-                'Rainfall': [self.rainfall],
+                'nitrogen': [self.nitogen],
+                'phosphorus': [self.phosphorus],
+                'potassium': [self.potassium],
+                'temperature': [self.temperature],
+                'humidity': [self.humidity],
+                'ph': [self.ph],
+                'rainfall': [self.rainfall],
             }
 
             return pd.DataFrame(custom_data_input_dict)
