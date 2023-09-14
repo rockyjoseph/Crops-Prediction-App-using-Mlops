@@ -2,11 +2,17 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
-
 df = pd.read_csv('artifacts\data.csv')
+
+refer = pd.DataFrame()
+encoder = LabelEncoder()
+
+crop_names = df['label'].unique()
+df['label'] = encoder.fit_transform(df['label'])
+encode = pd.DataFrame(df['label'].unique())
 
 st.title('Crops Prediction App')
 
@@ -28,4 +34,11 @@ if st.button('Predict'):
 
     results = predict_pipeline.predict(pred_df)
 
-    st.title('The Predicted Crops to grow: '+ str(float(np.exp(results[0]))))
+    st.title('The Predicted Crop to grow: '+ str(int(np.abs(results[0]))))
+
+    st.text('See the below table to grow which crop from the above prediction')
+    refer['Crop_names'] = crop_names
+    refer['Label'] = encode
+    refer.sort_values(by='Label', ascending=True)
+
+    st.table(refer)
