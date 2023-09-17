@@ -39,6 +39,6 @@ if st.button('Predict'):
     st.text('See the below table to grow which crop from the above prediction')
     refer['Crop_names'] = crop_names
     refer['Label'] = encode
-    refer.sort_values(by='Label', ascending=True)
+    refer.sort_values(by='Label', ascending=True, inplace=True)
 
     st.table(refer)
