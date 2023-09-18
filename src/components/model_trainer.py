@@ -19,7 +19,7 @@ from src.exception import CustomException
 from src.utils import evaluate_model
 
 @dataclass
-class ModelTrainerConfig():
+class ModelTrainerConfig:
     trained_model_file_path = os.path.join('artifacts','model.pkl')
 
 class ModelTrainer:
