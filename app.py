@@ -34,11 +34,57 @@ if st.button('Predict'):
 
     results = predict_pipeline.predict(pred_df)
 
-    st.title('The Predicted Crop to grow: '+ str(int(np.abs(results[0]))))
+    def prediction(results):
+        if results == 0:
+            return 'Apple'
+        if results == 1:
+            return 'Banana'
+        if results == 2:
+            return 'Blackgram'
+        if results == 3:
+            return 'Chickpea'
+        if results == 4:
+            return 'Coconut'
+        if results == 5:
+            return 'Coffee'
+        if results == 6:
+            return 'Cotton'
+        if results == 7:
+            return 'Grapes'
+        if results == 8:
+            return 'Jute'
+        if results == 9:
+            return 'Kidneybeans'
+        if results == 10:
+            return 'Lentil'
+        if results == 11:
+            return 'Maize'
+        if results == 12:
+            return 'Mango'
+        if results == 13:
+            return 'Mothbeans'
+        if results == 14:
+            return 'Mungbean'
+        if results == 15:
+            return 'Muskmelon'
+        if results == 16:
+            return 'Orange'
+        if results == 17:
+            return 'Papaya'
+        if results == 18:
+            return 'Pigeonpeas'
+        if results == 19:
+            return 'Pomegranate'
+        if results == 20:
+            return 'Rice'
+        if results == 21:
+            return 'Watermelon'
 
-    st.text('See the below table to grow which crop from the above prediction')
-    refer['Crop_names'] = crop_names
-    refer['Label'] = encode
-    refer.sort_values(by='Label', ascending=True, inplace=True)
+    st.title('The Predicted Crop to grow: '+ str(prediction(results[0])))
 
-    st.table(refer)
+    # st.text('See the below table to grow which crop from the above prediction')
+    # refer['Crop_names'] = crop_names
+    # refer['Label'] = encode
+    # refer.sort_values(by='Label', ascending=True, inplace=True)
+
+    # st.table(refer)
