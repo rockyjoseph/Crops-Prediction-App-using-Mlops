@@ -13,12 +13,10 @@ from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 df = pd.read_csv('artifacts\data.csv')
 
 # USER MENU
-st.sidebar.title('CROPS PREDICTION APP')
+st.sidebar.title('CROPS RECOMMENDER APP')
 user_menu = st.sidebar.radio('Select an Option',
-                             ('Overview', 'Dataset', 'EDA', 'Requirements', 'App'))
+                             ('Dataset', 'EDA', 'Requirements', 'App'))
 
-if user_menu == 'Overview':
-    pass
 
 if user_menu == 'Dataset':
     # DATASET
@@ -192,7 +190,7 @@ if user_menu == 'Requirements':
 
 if user_menu == 'App':
     # TITLE
-    st.title('CROPS PREDICTION APP')
+    st.title('CROPS RECOMMANDATION APP')
 
     # VARIABLES DECLARATION
     nitrogen = st.selectbox('Nirogen', df['nitrogen'].unique())
