@@ -10,7 +10,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
 # DATASET
-df = pd.read_csv('C:\Users\Rocky\Crops Prediction App\artifacts\data.csv')
+df = pd.read_csv('C:\Users\Rocky\Crops Prediction App\notebook\data\Crop_recommendation.csv')
 
 # USER MENU
 st.sidebar.title('CROPS RECOMMENDER APP')
