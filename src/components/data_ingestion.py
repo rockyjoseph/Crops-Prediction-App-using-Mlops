@@ -28,7 +28,7 @@ class DataIngestion:
         logging.info("Entered the Data Ingestion component")
         
         try:
-            df = pd.read_csv('notebook\data\Crop_recommendation.csv')
+            df = pd.read_csv('notebook/data/Crop_recommendation.csv')
             df = df.rename(columns={'N':'nitrogen', 'P':'phosphorus', 'K':'potassium'})
             logging.info("Read the dataset as dataframe")
 
