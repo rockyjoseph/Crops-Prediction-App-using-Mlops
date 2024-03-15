@@ -10,7 +10,6 @@ from sklearn.model_selection import cross_val_score
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
-from sklearn.tree import DecisionTreeClassifier
 
 from src.utils import save_obj
 from src.logger import logging
@@ -42,7 +41,6 @@ class ModelTrainer:
                 'Logistic Regression': LogisticRegression(solver='lbfgs'),
                 'Random Forest': RandomForestClassifier(),
                 'Gradient Boosting': GradientBoostingClassifier(),
-                'Decision Tree': DecisionTreeClassifier(),
                 'XgBoost': XGBClassifier(),
                 'Lightgbm': LGBMClassifier(),
                 'SVC': SVC()
@@ -61,7 +59,6 @@ class ModelTrainer:
 
 
                 'Gradient Boosting':{},
-                'Decision Tree':{},
                 'XgBoost':{},
                 'Lightgbm':{},
 
